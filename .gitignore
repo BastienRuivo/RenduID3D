@@ -1,0 +1,14 @@
+bin/*.dll
+bin/*.exe
+bin/*.pdb
+build
+*.make
+*.cbp
+
+*.workspace
+
+Makefile
+*.d
+*.o
+bin/tp
+bin/shader_kit
