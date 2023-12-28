@@ -1,0 +1,769 @@
+newmtl Antenna_Metal
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Antenna_Metal_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Antenna_Plastic
+  Kd 0.568627 0.572549 0.568627
+  Ks 0.040000 0.040000 0.040000
+  Ns 4.627404
+
+newmtl Antenna_Plastic_Blue
+  Kd 0.568627 0.572549 0.568627
+  Ks 0.040000 0.040000 0.040000
+  Ns 4.627404
+
+newmtl Ashtray
+  Kd 0.560784 0.556863 0.560784
+  Ks 0.040000 0.040000 0.040000
+  Ns 4.627404
+
+newmtl Awnings_Beams
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Awnings_Beams_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Awnings_Fabric
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Awnings_Fabric_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Awnings_Hotel_Fabric
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Awnings_Hotel_Fabric_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Balcony_Concrete
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Balcony_Concrete_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Balcony_Green_Wood
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Balcony_Green_Wood_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Balcony_Ornaments
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Balcony_Ornaments_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Balcony_Trims
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Balcony_Trims_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Banner_Metal
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Banner_Metal_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Bistro_Sign_Letters
+  Kd 0.309804 0.317647 0.309804
+  Ks 0.040000 0.040000 0.040000
+  Ns 4.627404
+
+newmtl Bistro_Sign_Main
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Bistro_Sign_Main_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Bollards
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Bollards_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Chimneys_Metal
+  Ks 0.040000 0.040000 0.040000
+  Ns 4.627404
+
+newmtl Concrete
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Concrete_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Concrete2
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Concrete2_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Concrete3
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Concrete3_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Concrete_Striped
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Concrete_Striped_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl ElectricBox
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/ElectricBox_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Emissive_StreetLight
+  Ks 0.040000 0.040000 0.040000
+  Ns 4.627404
+  Ke 0.500000 0.500000 0.500000
+
+newmtl Foliage_Bux_Hedges46.DoubleSided
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Foliage_Bux_Hedges46_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Foliage_Flowers.DoubleSided
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Foliage_Flowers_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Foliage_Ivy_branches
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Foliage_Ivy_branches_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Foliage_Ivy_leaf_a.DoubleSided
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Foliage_Ivy_leaf_a_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Foliage_Leaves.DoubleSided
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Foliage_Leaves_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Foliage_Linde_Tree_Large_Green_Leaves.DoubleSided
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Foliage_Linde_Tree_Large_Green_Leaves_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Foliage_Linde_Tree_Large_Orange_Leaves.DoubleSided
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Foliage_Linde_Tree_Large_Orange_Leaves_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Foliage_Linde_Tree_Large_Trunk
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Foliage_Linde_Tree_Large_Trunk_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Foliage_Paris_Flowers
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Foliage_Paris_Flowers_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Foliage_Trunk
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Foliage_Trunk_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl LanternEmissive
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/LanternEmissive_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Awning_Beams
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Awning_Beams_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Awning_Fabric_Cyan
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Awning_Fabric_Cyan_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Awning_Fabric_Red
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Awning_Fabric_Red_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Bistro_Main_Door
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Bistro_Main_Door_BaseColor.png
+  Ks 1.000000 1.000000 1.000000
+  map_Ks small/MASTER_Bistro_Main_Door_specular_conv.png
+  Ns 1.000000
+
+newmtl MASTER_Black_Metal
+  Ks 0.482353 0.478431 0.517647
+  Ns 4.627404
+
+newmtl MASTER_Book_Covers
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Book_Covers_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Boulangerie
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Boulangerie_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Brick_Large_Beige_BLENDSHADER
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Brick_Large_Beige_BLENDSHADER_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Brick_Large_White
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Brick_Large_White_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Brick_Small_Red
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Brick_Small_Red_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Brick_Small_Red_BLENDSHADER
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Brick_Small_Red_BLENDSHADER_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Bronze_BLENDSHADER
+  Ks 0.556863 0.419608 0.243137
+  Ns 4.627404
+
+newmtl MASTER_Building_Details
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Building_Details_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Concrete
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Concrete_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Concrete1
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Concrete1_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Concrete_Grooved
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Concrete_Grooved_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Concrete_Plaster
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Concrete_Plaster_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Concrete_Plaster1_BLENDSHADER
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Concrete_Plaster1_BLENDSHADER_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Concrete_Smooth
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Concrete_Smooth_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Concrete_Smooth_BLENDSHADER
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Concrete_Smooth_BLENDSHADER_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Concrete_White
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Concrete_White_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Concrete_Yellow
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Concrete_Yellow_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Curtains
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Curtains_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Details_Dark
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Details_Dark_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Doors
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Doors_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Focus
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Focus_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Focus_Ornament
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Focus_Ornament_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Forge_Metal
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Forge_Metal_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Frosted_Glass
+  Kd 0.505882 0.501961 0.505882
+  Ks 0.040000 0.040000 0.040000
+  Ns 4.627404
+
+newmtl MASTER_Glass_Dirty
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Glass_Dirty_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Glass_Dirty_MASKED
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Glass_Dirty_MASKED_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Glass_Exterior
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Glass_Exterior_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Grain_Metal
+  Ks 0.482353 0.478431 0.517647
+  Ns 4.627404
+
+newmtl MASTER_Light_Bulb
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Light_Bulb_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Metal
+  Ks 0.611765 0.615686 0.603922
+  Ns 4.627404
+
+newmtl MASTER_Metal_Pipe
+  Ks 0.482353 0.478431 0.517647
+  Ns 4.627404
+
+newmtl MASTER_Plastic
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Plastic_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Rollup_Door
+  Ks 0.040000 0.040000 0.040000
+  Ns 4.627404
+
+newmtl MASTER_Roofing_Metal_01
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Roofing_Metal_01_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Roofing_Shingle_Green
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Roofing_Shingle_Green_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Roofing_Shingle_Grey
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Roofing_Shingle_Grey_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Room_Interior
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Room_Interior_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Side_Letters
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Side_Letters_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Trim_Cornice
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Trim_Cornice_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Wood_Brown
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Wood_Brown_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Wood_Painted3
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Wood_Painted3_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Wood_Painted_Cyan
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Wood_Painted_Cyan_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Wood_Painted_Green
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Wood_Painted_Green_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Wood_Painted_Green_BLENDSHADER
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Wood_Painted_Green_BLENDSHADER_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MASTER_Wood_Polished
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MASTER_Wood_Polished_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MenuSign_01
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MenuSign_01_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MenuSign_02_Glass
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MenuSign_02_Glass_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl MenuSign_02_Mesh
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/MenuSign_02_Mesh_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl NapkinHolder
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/NapkinHolder_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Paris_Chair_01
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Paris_Chair_01_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Paris_LiquorBottle_01_Caps
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Paris_LiquorBottle_01_Caps_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Paris_LiquorBottle_01_Glass_Wine
+  Kd 0.117647 0.117647 0.117647
+  Ks 0.040000 0.040000 0.040000
+  Ns 4.627404
+
+newmtl Paris_LiquorBottle_01_Labels
+
+newmtl Paris_StreetPivot
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Paris_StreetPivot_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Paris_StreetSign_01
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Paris_StreetSign_01_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Paris_StringLights_01_Blue_Color_Emissive
+  Kd 0.000000 0.290196 1.000000
+  Ks 0.040000 0.040000 0.040000
+  Ns 4.627404
+  Ke 0.500000 0.500000 0.500000
+
+newmtl Paris_StringLights_01_Green_Color_Emissive
+  Kd 0.000000 0.572549 0.031373
+  Ks 0.040000 0.040000 0.040000
+  Ns 4.627404
+  Ke 0.500000 0.500000 0.500000
+
+newmtl Paris_StringLights_01_Orange_Color_Emissive
+  Kd 0.968628 0.686275 0.290196
+  Ks 0.040000 0.040000 0.040000
+  Ns 4.627404
+  Ke 0.500000 0.500000 0.500000
+
+newmtl Paris_StringLights_01_Pink_Color_Emissive
+  Kd 0.827451 0.031373 1.000000
+  Ks 0.040000 0.040000 0.040000
+  Ns 4.627404
+  Ke 0.500000 0.500000 0.500000
+
+newmtl Paris_StringLights_01_Red_Color_Emissive
+  Kd 0.752941 0.003922 0.000000
+  Ks 0.040000 0.040000 0.040000
+  Ns 4.627404
+  Ke 0.500000 0.500000 0.500000
+
+newmtl Paris_StringLights_01_White_Color
+  Kd 1.000000 1.000000 1.000000
+  Ks 0.040000 0.040000 0.040000
+  Ns 4.627404
+
+newmtl Paris_StringLights_01_White_Color_Emissive
+  Kd 1.000000 1.000000 1.000000
+  Ks 0.040000 0.040000 0.040000
+  Ns 4.627404
+  Ke 0.500000 0.500000 0.500000
+
+newmtl Paris_Table_Terrace
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Paris_Table_Terrace_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Paris_TrafficSign_A
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Paris_TrafficSign_A_BaseColor.png
+  Ks 1.000000 1.000000 1.000000
+  map_Ks small/Paris_TrafficSign_A_specular_conv.png
+  Ns 1.000000
+
+newmtl Pavement_Brick_BLENDSHADER
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Pavement_Brick_BLENDSHADER_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Pavement_Cobble_Leaves_BLENDSHADER
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Pavement_Cobble_Leaves_BLENDSHADER_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Pavement_Cobblestone_01_BLENDSHADER
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Pavement_Cobblestone_01_BLENDSHADER_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Pavement_Cobblestone_02
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Pavement_Cobblestone_02_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Pavement_Cobblestone_Big_BLENDSHADER
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Pavement_Cobblestone_Big_BLENDSHADER_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Pavement_Cobblestone_Small_BLENDSHADER
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Pavement_Cobblestone_Small_BLENDSHADER_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Pavement_Cobblestone_Wet_BLENDSHADER
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Pavement_Cobblestone_Wet_BLENDSHADER_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Pavement_Cobblestone_Wet_Leaves_BLENDSHADER
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Pavement_Cobblestone_Wet_Leaves_BLENDSHADER_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Pavement_Curbstones
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Pavement_Curbstones_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Pavement_Ground_Wet
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Pavement_Ground_Wet_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Pavement_Manhole_Cover
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Pavement_Manhole_Cover_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Plantpots
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Plantpots_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Plaster
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Plaster_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Shopsign_Bakery
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Shopsign_Bakery_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Shopsign_Book_Store_Emissive
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Shopsign_Book_Store_Emissive_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+  Ke 0.500000 0.500000 0.500000
+
+newmtl Shopsign_Pharmacy_Emissive
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Shopsign_Pharmacy_Emissive_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+  Ke 0.500000 0.500000 0.500000
+
+newmtl Shopsign_Ties_Shop
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Shopsign_Ties_Shop_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Sidewalkbarrier
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Sidewalkbarrier_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Spotlight_Emissive
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Spotlight_Emissive_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Spotlight_Glass_Emissive
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Spotlight_Glass_Emissive_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+  Ke 0.500000 0.500000 0.500000
+
+newmtl Spotlight_Main
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Spotlight_Main_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Streetlight_Chains
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Streetlight_Chains_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Streetlight_Metal
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Streetlight_Metal_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Streetlight_Support_Bulb
+  Kd 0.203922 0.200000 0.203922
+  Ks 0.040000 0.040000 0.040000
+  Ns 4.627404
+
+newmtl Stringlights
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Stringlights_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Trashcan
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Trashcan_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Vespa
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Vespa_BaseColor.png
+  Ks 1.000000 1.000000 1.000000
+  map_Ks small/Vespa_specular_conv.png
+  Ns 1.000000
+
+newmtl Vespa_Headlight
+  Kd 1.000000 1.000000 1.000000
+  Ks 0.040000 0.040000 0.040000
+  Ns 4.627404
+
+newmtl Vespa_Odometer
+  Kd 1.000000 1.000000 1.000000
+  map_Kd small/Vespa_Odometer_BaseColor.png
+  Ks 0.040000 0.040000 0.040000
+  Ns 0.000000
+
+newmtl Vespa_Odometer_Glass
+  Kd 1.000000 1.000000 1.000000
+  Ks 0.040000 0.040000 0.040000
+  Ns 4.627404
+
