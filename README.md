@@ -1,6 +1,6 @@
-# tp de rendu du Master ID3D de Lyon 1
+# TP de rendu du Master ID3D de Lyon 1
 
-![Texte alternatif](./SI3D.png).
+![Texte alternatif](./SI3D.png)
 
 Scène [bistro](https://developer.nvidia.com/orca/amazon-lumberyard-bistro) de Amazon et Nvidia
 
