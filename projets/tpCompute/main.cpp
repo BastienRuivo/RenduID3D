@@ -16,7 +16,7 @@ public:
 
     void initShaders() {
         Scene::InitShader("projets/tpCompute/bf.glsl", lightShader);
-        Scene::InitShader("projets/tpCompute/shadow.glsl", shadowShader);
+        Scene::InitShader("projets/tpCompute/depth.glsl", depthBuffer);
         Scene::InitShader("projets/tpCompute/frustum.glsl", param.frustumShader); 
         Scene::InitShader("projets/tpCompute/occlusion.glsl", param.occlusionShader);
     }
@@ -111,7 +111,7 @@ public:
         glDeleteProgram(lightShader);
         glDeleteProgram(param.frustumShader);
         glDeleteProgram(param.occlusionShader);
-        glDeleteProgram(shadowShader);
+        glDeleteProgram(depthBuffer);
 
         for(auto & mesh : meshes) {
             delete mesh;
@@ -179,7 +179,7 @@ public:
         glViewport(0, 0, param.fbWidth, param.fbHeight);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         for(auto & mesh : meshes) {
-            param.drawCall += mesh->draw(param, shadowShader, viewLight, projectionLight, vpInvLight, Translation(param.lightPos));
+            param.drawCall += mesh->draw(param, depthBuffer, viewLight, projectionLight, vpInvLight, Translation(param.lightPos));
 
         }
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -246,7 +246,7 @@ protected:
     Param param;
 
     GLuint lightShader;
-    GLuint shadowShader;
+    GLuint depthBuffer;
     Transform shadowvp = Viewport(1, 1);
     
 
