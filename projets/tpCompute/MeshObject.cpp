@@ -60,7 +60,8 @@ MeshObject::MeshObject(const std::string & filename) {
     // glGenBuffers(1, &indirectBuffer);
     // glBindBuffer(GL_DRAW_INDIRECT_BUFFER, indirectBuffer);
     // glBufferData(GL_DRAW_INDIRECT_BUFFER, indirectParams.size() * sizeof(GLSL::IndirectParam), indirectParams.data(), GL_STATIC_READ);
-    InitBuffer(GL_SHADER_STORAGE_BUFFER, GL_DYNAMIC_DRAW, drawCountBuffer, sizeof(GLuint), nullptr);
+    InitBuffer(GL_SHADER_STORAGE_BUFFER, GL_DYNAMIC_DRAW, frustumDrawCountBuffer, sizeof(GLuint), nullptr);
+    InitBuffer(GL_SHADER_STORAGE_BUFFER, GL_DYNAMIC_DRAW, occlusionDrawCountBuffer, sizeof(GLuint), nullptr);
     InitBuffer(GL_DRAW_INDIRECT_BUFFER, GL_DYNAMIC_DRAW, indirectBuffer, indirectParams.size() * sizeof(GLSL::IndirectParam), indirectParams.data());
     InitBuffer(GL_SHADER_STORAGE_BUFFER, GL_DYNAMIC_DRAW, objectBuffer, objects.size() * sizeof(GLSL::Object), objects.data());
     InitBuffer(GL_SHADER_STORAGE_BUFFER, GL_STATIC_READ, materialBuffer, materialsGPU.size() * sizeof(GLSL::MaterialGPU), materialsGPU.data());
@@ -73,7 +74,8 @@ MeshObject::~MeshObject() {
     glDeleteBuffers(1, &indirectBuffer);
     glDeleteBuffers(1, &objectBuffer);
     glDeleteBuffers(1, &materialBuffer);
-    glDeleteBuffers(1, &drawCountBuffer);
+    glDeleteBuffers(1, &frustumDrawCountBuffer);
+    glDeleteBuffers(1, &occlusionDrawCountBuffer);
     glDeleteTextures(1, &textureArray);
 
     mesh.release();
@@ -85,6 +87,8 @@ void MeshObject::InitBuffer(GLenum primitive, GLenum dataMode, GLuint & buffer, 
     glBufferData(primitive, size, data, dataMode);
     glBindBuffer(primitive, 0);
 }
+
+
 
 void MeshObject::InitTextureArray(GLuint & textureBuffer, Materials & materials) {
     if(materials.filename_count() == 0) {
@@ -112,7 +116,7 @@ int MeshObject::FrustumCulling(const Param & param, const Transform & mvp, const
     glUseProgram(param.frustumShader);
     BindObject(0);
     BindIndirect(1);
-    BindDrawCount(2);
+    BindFrustumDrawCount(2);
     program_uniform(param.frustumShader, "mvpMatrix", mvp);
     program_uniform(param.frustumShader, "vpInverseMatrix", vpInv);
 
@@ -123,20 +127,20 @@ int MeshObject::FrustumCulling(const Param & param, const Transform & mvp, const
 
     // Read draw count
     int draw;
-    glBindBuffer(GL_SHADER_STORAGE_BUFFER, drawCountBuffer);
+    glBindBuffer(GL_SHADER_STORAGE_BUFFER, frustumDrawCountBuffer);
     glGetBufferSubData(GL_SHADER_STORAGE_BUFFER, 0, sizeof(GLuint), &draw);
     glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
     return draw;
 }
 
-int MeshObject::draw(const Param & param, GLuint program, const Transform & view, const Transform & projection, const Transform & vpInv, const Transform & mm) {
-    auto m = mm * model;
+int MeshObject::draw(const Param & param, GLuint program, const Orbiter & cam, const Transform & view, const Transform & projection, const Transform & vpInv, const Transform & mm) {
+    auto m = model;
     Transform mv = view * m;
     Transform mvp = projection * mv;
     
     // Handle frustum culling
-    OcclusionCulling(param, mvp, vpInv);
-    int draw = FrustumCulling(param, mvp, vpInv);
+    int draw = 0;//OcclusionCulling(param, cam, mvp, vpInv);
+    //int draw = FrustumCulling(param, mvp, vpInv);
 
     glBindVertexArray(mesh.m_vao);
     glUseProgram(program);
@@ -156,15 +160,25 @@ int MeshObject::draw(const Param & param, GLuint program, const Transform & view
     return draw;
 }
 
-void MeshObject::OcclusionCulling(const Param & param, const Transform & mvp, const Transform & vpInv) {
+int MeshObject::OcclusionCulling(const Param & param, const Orbiter  & cam, const Transform & mvp, const Transform & vpInv) {
     glUseProgram(param.occlusionShader);
     BindObject(0);
     BindIndirect(1);
-    BindDrawCount(2);
-    program_uniform(param.occlusionShader, "mvpMatrix", mvp);
-
+    BindOcclusionDrawCount(2);
+    program_uniform(param.occlusionShader, "mvpvp", Viewport(1.0, 1.0) * mvp);
+    program_use_texture(param.occlusionShader, "depthSampler", 3, param.occTexture);
+    program_uniform(param.occlusionShader, "width", param.occWidth);
+    program_uniform(param.occlusionShader, "height", param.occHeight);
+    program_uniform(param.lightShader, "znear", cam.znear());
+    program_uniform(param.lightShader, "zfar", cam.zfar());
     int nb = 256;
     int groups = (size() + nb) / nb;
     glDispatchCompute(groups, 1, 1);
     glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
+
+    int draw;
+    glBindBuffer(GL_SHADER_STORAGE_BUFFER, occlusionDrawCountBuffer);
+    glGetBufferSubData(GL_SHADER_STORAGE_BUFFER, 0, sizeof(GLuint), &draw);
+    glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
+    return draw;
 }

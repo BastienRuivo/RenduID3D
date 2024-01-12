@@ -280,11 +280,11 @@ public:
 
         // readObject("data/cube.obj");
         // m_models.push_back(Scale(10, 0.1, 10));
-        // readObject("data/bigguy.obj");
-        // m_models.push_back(Scale(0.1, 0.1, 0.1) * Translation(0, 9.8, 0));
-
-        readObject("data/exterior.obj");
+        readObject("data/bigguy.obj");
         m_models.push_back(Scale(0.1, 0.1, 0.1) * Translation(0, 9.8, 0));
+
+        //readObject("data/exterior.obj");
+        //m_models.push_back(Scale(0.1, 0.1, 0.1) * Translation(0, 9.8, 0));
 
         float w = 5.f;
         camera().lookat(Point(-w, -w, -w), Point(w, w, w));
@@ -415,7 +415,7 @@ public:
     {
         param.drawCall = 0;
         //shadow draw
-        if(param.generateShadow) {
+        if(true || param.generateShadow) {
             projectionLight = Ortho(-param.orthoSize, param.orthoSize, -param.orthoSize, param.orthoSize, -param.orthoSize, param.orthoSize);
             viewLight = Lookat(Point(param.lightPos), Point(param.lightPos) + Point(param.lightDir), Vector(0, 1, 0));
             vpInvLight = (projectionLight * viewLight).inverse();

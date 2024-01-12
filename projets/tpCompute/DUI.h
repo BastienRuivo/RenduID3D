@@ -6,6 +6,8 @@
 #include "Param.h"
 #include <SDL2/SDL.h>
 
+#include "texture.h"
+#include "program.h"
 
 class DUI
 {

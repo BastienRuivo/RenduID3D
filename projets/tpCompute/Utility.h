@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _UTILITY_H
+#define _UTILITY_H
 
 #include "wavefront.h"
 #include "uniforms.h"
@@ -6,8 +7,6 @@
 #include "orbiter.h"
 #include "draw.h"        
 #include "app_camera.h"        // classe Application a deriver
-
-#include "Param.h"
 
 #include <array>
 
@@ -204,25 +203,6 @@ Mesh make_bbox(const Point & min, const Point & max) {
     return bbox;
 }
 
-void saveTexture(GLuint & texture, size_t w, size_t h, size_t nbChannels, GLuint format, const std::string & path, int fbWidth, int fbHeight) {
-    glBindTexture(GL_TEXTURE_2D, texture);
-    std::vector<unsigned char> pixels(w * h * nbChannels, 0);
-    glGetTexImage(GL_TEXTURE_2D, 0, format, GL_UNSIGNED_BYTE, pixels.data());
-    Image im(w, h, Black());
-    if(nbChannels == 1) {
-        for(int i = 0; i < fbWidth * fbHeight; i++) {
-            Color c = Color(pixels[i]/255.0, pixels[i]/255.0, pixels[i]/255.0);
-            im(i) = c;
-        }
-    } else {
-        for(int i = 0; i < fbWidth * fbHeight; i++) {
-            Color c = Color(pixels[i*3]/255.0, pixels[i*3+1]/255.0, pixels[i*3+2]/255.0);
-            im(i) = c;
-        }
-    }
-    write_image(im, path.c_str());
-}
-
 namespace Scene {
     void Init(Color color) {
         // etat openGL par defaut
@@ -237,4 +217,52 @@ namespace Scene {
             exit(0);
         }
     }
+    void InitFramebuffer(GLuint & framebuffer, GLuint & texture) {
+        glGenFramebuffers(1, &framebuffer);
+        glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+
+        glFramebufferTexture(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, texture, 0);
+
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        if(glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+            std::cout<<"ERROR FRAMEBUFFER"<<std::endl;
+            exit(1);
+        } 
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    }
+
+    GLuint makeMipmapTexture(size_t w, size_t h) {
+        GLuint texture;
+        glGenTextures(1, &texture);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_R32F, w, h, 0, GL_RED, GL_FLOAT, nullptr);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glGenerateMipmap(GL_TEXTURE_2D);
+
+        return texture;
+    }
+
+    void setDepthSampler(GLuint texture, int unit = 0) {
+        glActiveTexture(GL_TEXTURE0 + unit);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    }
+
+    void setMipmapTexture(GLuint texture, int unit, int lvl, GLenum access, int tw = -1, int th = -1) {
+        glActiveTexture(GL_TEXTURE0 + unit);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        if(tw != -1) {
+            glTexImage2D(GL_TEXTURE_2D, lvl, GL_R32F, tw, th, 0, GL_RED, GL_FLOAT, nullptr);
+        }
+        glBindImageTexture(unit, texture, lvl, GL_FALSE, 0, access, GL_R32F);
+    }
 }
+
+
+#endif

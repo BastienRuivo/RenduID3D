@@ -328,15 +328,16 @@ Transform Rotation( const Vector& u, const Vector& v )
 
 Transform Perspective( const float fov, const float aspect, const float znear, const float zfar )
 {
-    // perspective, openGL version
-    float itan= 1 / tanf(radians(fov) * 0.5f);
-    float id= 1 / (znear - zfar);
+    // perspective, openGL version, object at znear should be at -1 in z and object at zfar should be at 1 in z
+    float f= 1.f / tanf(radians(fov) / 2.f);
+    float a= (zfar + znear) / (znear - zfar);
+    float b= (2.f * zfar * znear) / (znear - zfar);
 
     return Transform(
-        itan/aspect,    0,               0,                 0,
-                  0, itan,               0,                 0,
-                  0,    0, (zfar+znear)*id, 2.f*zfar*znear*id,
-                  0,    0,              -1,                 0);
+        f / aspect, 0,  0,  0,
+        0,          f,  0,  0,
+        0,          0,  a,  b,
+        0,          0, -1,  0);
 }
 
 

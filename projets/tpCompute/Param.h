@@ -30,9 +30,10 @@ struct Param
 
     // Occlusion map Texture parameters
     GLuint occTexture = 0;
+    GLuint occMipmapTexture = 0;
     bool occSaveTexture = false;
-    int occWidth = 1024;
-    int occHeight = 1024;
+    int occWidth = 512;
+    int occHeight = 512;
 
     // Occ map FrameBuffer parameters
     GLuint occFrameBuffer = 0;
@@ -40,4 +41,10 @@ struct Param
 
     GLuint occlusionShader;
     GLuint frustumShader;
+    GLuint mipmapShader;
+    GLuint mipmapInitShader;
+    GLuint lightShader;
+    GLuint depthShader;
+
+    float depth, sample;
 };

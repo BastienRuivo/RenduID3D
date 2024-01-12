@@ -7,6 +7,7 @@
 #include "texture.h"
 #include "uniforms.h"
 #include "Param.h"
+#include "orbiter.h"
 
 
 #include <chrono>
@@ -14,12 +15,12 @@
 class MeshObject
 {
 private:
-    Mesh mesh;
     // OpenGL buffers
     GLuint indirectBuffer;
     GLuint objectBuffer;
     GLuint materialBuffer;
-    GLuint drawCountBuffer;
+    GLuint frustumDrawCountBuffer;
+    GLuint occlusionDrawCountBuffer;
 
     // Texture
     GLuint textureArray;
@@ -36,9 +37,10 @@ private:
     static void InitTextureArray(GLuint & textureBuffer, Materials & materials);
 
     int FrustumCulling(const Param & param, const Transform & mvp, const Transform & vpInv);
-    void OcclusionCulling(const Param & param, const Transform & mvp, const Transform & vpInv);
+    int OcclusionCulling(const Param & param, const Orbiter & cam, const Transform & mvp, const Transform & vpInv);
 
 public:
+    Mesh mesh;
     Transform model = Identity();
     
     MeshObject() = default;
@@ -74,11 +76,14 @@ public:
     inline void BindIndirectDraw(unsigned int index) const {
         BindBuffer(GL_DRAW_INDIRECT_BUFFER, indirectBuffer, index);
     }
-    inline void BindDrawCount(unsigned int index) const {
-        BindBuffer(GL_SHADER_STORAGE_BUFFER, drawCountBuffer, index);
+    inline void BindFrustumDrawCount(unsigned int index) const {
+        BindBuffer(GL_SHADER_STORAGE_BUFFER, frustumDrawCountBuffer, index);
+    }
+    inline void BindOcclusionDrawCount(unsigned int index) const {
+        BindBuffer(GL_SHADER_STORAGE_BUFFER, occlusionDrawCountBuffer, index);
     }
 
-    int draw(const Param & param, GLuint program, const Transform & view, const Transform & projection, const Transform & vpInv, const Transform & m);
+    int draw(const Param & param, GLuint program, const Orbiter  & cam, const Transform & view, const Transform & projection, const Transform & vpInv, const Transform & m);
 
     ~MeshObject();
 };

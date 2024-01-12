@@ -1,5 +1,4 @@
 #include "DUI.h"
-#include "texture.h"
 
 DUI::DUI()
 {
@@ -14,6 +13,13 @@ void DUI::init(SDL_Window * m_window)
     ImGui_ImplSdlGL3_Init(m_window);
 
     ImGui::StyleColorsDark();
+}
+
+void InitShader(const std::string & filename, GLuint & shader) {
+    shader = read_program(filename.c_str());
+    if(program_print_errors(shader)) {
+        exit(0);
+    }
 }
 
 void DUI::paramUI(SDL_Window * m_window, Param & param)
@@ -48,6 +54,23 @@ void DUI::paramUI(SDL_Window * m_window, Param & param)
     ImGui::SliderFloat("Shadow Factor", &param.shadowFactor, 0.0, 1.0);
     ImGui::SliderFloat("Shadow Bias", &param.shadowBias, 0.0, 0.1, "%.5f");
 
+    if(ImGui::Button("Recompile shaders")) {
+         // delete all shaders
+        glDeleteProgram(param.lightShader);
+        glDeleteProgram(param.frustumShader);
+        glDeleteProgram(param.occlusionShader);
+        glDeleteProgram(param.depthShader);
+        glDeleteProgram(param.mipmapShader);
+
+
+        InitShader("projets/tpCompute/bf.glsl", param.lightShader);
+        InitShader("projets/tpCompute/depth.glsl", param.depthShader);
+        InitShader("projets/tpCompute/frustum.glsl", param.frustumShader); 
+        InitShader("projets/tpCompute/occlusion.glsl", param.occlusionShader);
+        InitShader("projets/tpCompute/mipmap_maker.glsl", param.mipmapShader);
+        InitShader("projets/tpCompute/mipmap_maker_init.glsl", param.mipmapInitShader);
+    }
+
 
     if(ImGui::Button("Generate Shadow")) {
         param.generateShadow = true;
@@ -55,7 +78,11 @@ void DUI::paramUI(SDL_Window * m_window, Param & param)
     if(ImGui::Button("Save Texture")) {
         param.saveTexture = true;
     }
-    ImGui::Image((void*)(intptr_t)param.occTexture, ImVec2(512, 512), ImVec2(0, 1), ImVec2(1, 0), ImColor(255, 255, 255, 255), ImColor(0, 0, 0, 128));
+
+    
+    ImGui::Image((void*)(intptr_t)param.occTexture, ImVec2(512, 512), ImVec2(0, 1), ImVec2(1, 0));
+
+
 }
 
 void DUI::createUIWindow(SDL_Window * m_window, const std::string& name)
