@@ -21,6 +21,7 @@ private:
     GLuint materialBuffer;
     GLuint frustumDrawCountBuffer;
     GLuint occlusionDrawCountBuffer;
+    //GLuint drawCountBuffer;
 
     // Texture
     GLuint textureArray;
@@ -37,7 +38,7 @@ private:
     static void InitTextureArray(GLuint & textureBuffer, Materials & materials);
 
     int FrustumCulling(const Param & param, const Transform & mvp, const Transform & vpInv);
-    int OcclusionCulling(const Param & param, const Orbiter & cam, const Transform & mvp, const Transform & vpInv);
+    int OcclusionCulling(Param & param, const Transform & mvp, const Transform & vpInv);
 
 public:
     Mesh mesh;
@@ -82,9 +83,11 @@ public:
     inline void BindOcclusionDrawCount(unsigned int index) const {
         BindBuffer(GL_SHADER_STORAGE_BUFFER, occlusionDrawCountBuffer, index);
     }
+    // inline void BindDrawCount(unsigned int index) const {
+    //     BindBuffer(GL_SHADER_STORAGE_BUFFER, drawCountBuffer, index);
+    // }
 
-    int draw(const Param & param, GLuint program, const Orbiter  & cam, const Transform & view, const Transform & projection, const Transform & vpInv, const Transform & m);
-
+    int draw(Param & param, GLuint program, const Transform & view, const Transform & projection, const Transform & vpInv, const Transform & m, bool performCulling);
     ~MeshObject();
 };
 #endif

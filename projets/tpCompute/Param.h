@@ -32,8 +32,10 @@ struct Param
     GLuint occTexture = 0;
     GLuint occMipmapTexture = 0;
     bool occSaveTexture = false;
-    int occWidth = 512;
-    int occHeight = 512;
+    int occWidth = 128;
+    int occHeight = 128;
+
+    bool occGeneratedOnce = false;
 
     // Occ map FrameBuffer parameters
     GLuint occFrameBuffer = 0;
@@ -45,6 +47,13 @@ struct Param
     GLuint mipmapInitShader;
     GLuint lightShader;
     GLuint depthShader;
+    //GLuint cullingShader;
 
     float depth, sample;
+    int lvl = 0;
+
+    bool showBbox = false;
+
+    int minw = 4;
+    int minh = 4;
 };

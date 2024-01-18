@@ -53,6 +53,7 @@ void main( )
     barrier();
     if(gl_GlobalInvocationID.x >= object.length()) return;
     if(param[gl_GlobalInvocationID.x].index_count == 0) return;
+    
     Object obj = object[gl_GlobalInvocationID.x];
     vec3[8] box = boxify(obj.pmin.xyz, obj.pmax.xyz);
     vec3[8] frustum = boxify(vec3(-1.0, -1.0, -1.0), vec3(1.0, 1.0, 1.0));

@@ -206,10 +206,12 @@ Mesh make_bbox(const Point & min, const Point & max) {
 namespace Scene {
     void Init(Color color) {
         // etat openGL par defaut
+        glEnable(GL_DEPTH_TEST);                    // activer le ztest
+        glDepthFunc(GL_LESS);                       // ztest, conserver l'intersection la plus proche de la camera
+        glDepthRange(0, 1.0);
+
         glClearColor(color.r, color.g, color.b, color.a);        // couleur par defaut de la fenetre
         glClearDepth(1.f);                          // profondeur par defaut
-        glDepthFunc(GL_LESS);                       // ztest, conserver l'intersection la plus proche de la camera
-        glEnable(GL_DEPTH_TEST);                    // activer le ztest
     }
     void InitShader(const std::string & path, GLuint & shader) {
         shader = read_program(path.c_str());
@@ -217,11 +219,11 @@ namespace Scene {
             exit(0);
         }
     }
-    void InitFramebuffer(GLuint & framebuffer, GLuint & texture) {
+    void InitFramebuffer(GLuint & framebuffer, GLuint & texture, GLenum attachement) {
         glGenFramebuffers(1, &framebuffer);
         glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 
-        glFramebufferTexture(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, texture, 0);
+        glFramebufferTexture(GL_DRAW_FRAMEBUFFER, attachement, texture, 0);
 
         glBindTexture(GL_TEXTURE_2D, texture);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -250,8 +252,6 @@ namespace Scene {
     void setDepthSampler(GLuint texture, int unit = 0) {
         glActiveTexture(GL_TEXTURE0 + unit);
         glBindTexture(GL_TEXTURE_2D, texture);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     }
 
     void setMipmapTexture(GLuint texture, int unit, int lvl, GLenum access, int tw = -1, int th = -1) {

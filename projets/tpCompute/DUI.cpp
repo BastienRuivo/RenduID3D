@@ -27,6 +27,8 @@ void DUI::paramUI(SDL_Window * m_window, Param & param)
     ImGui::ColorEdit3("Light Color", &param.lightColor.r);
     ImGui::SliderFloat("Light Intensity", &param.lightIntensity, 0.0, 80.0);
     ImGui::InputInt("Drawn Object", &param.drawCall, 1, 100, ImGuiInputTextFlags_ReadOnly);
+    // 8 digits precision, no scientific notation
+    ImGui::InputFloat("Depth", &param.depth, 0.0, 0.0, "%.8f", ImGuiInputTextFlags_ReadOnly);
     
 
     if(ImGui::Button("Reset")) {
@@ -42,6 +44,11 @@ void DUI::paramUI(SDL_Window * m_window, Param & param)
         else
             glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
     }
+
+    ImGui::SameLine();
+    if(ImGui::Checkbox("Show Bbox", &param.showBbox)) {
+    }
+
     if(ImGui::SliderFloat3("Light P", &param.lightPos.x, -100, 100)) {
         param.generateShadow = true;
     }
@@ -69,6 +76,7 @@ void DUI::paramUI(SDL_Window * m_window, Param & param)
         InitShader("projets/tpCompute/occlusion.glsl", param.occlusionShader);
         InitShader("projets/tpCompute/mipmap_maker.glsl", param.mipmapShader);
         InitShader("projets/tpCompute/mipmap_maker_init.glsl", param.mipmapInitShader);
+        // InitShader("projets/tpCompute/culling.glsl", param.cullingShader);
     }
 
 

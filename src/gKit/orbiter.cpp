@@ -56,15 +56,15 @@ Transform Orbiter::projection( const int width, const int height, const float fo
 float Orbiter::znear( ) const
 {
     // calcule la distance entre le centre de l'objet et la camera
-    float d= distance(m_center, Point(m_position.x, m_position.y, m_size));
-    return std::max(float(0.1), d - m_radius);
+    //float d= distance(m_center, Point(m_position.x, m_position.y, m_size));
+    return 0.1;
 }
 
 float Orbiter::zfar( ) const
 {
     // calcule la distance entre le centre de l'objet et la camera
-    float d= distance(m_center, Point(m_position.x, m_position.y, m_size));
-    return std::max(float(1), d + m_radius);
+    //float d= distance(m_center, Point(m_position.x, m_position.y, m_size));
+    return 300.0;
 }
 
 

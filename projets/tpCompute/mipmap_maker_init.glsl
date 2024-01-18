@@ -32,7 +32,6 @@ void main( )
     d1 = texelFetch(input_img, ivec2(fx + 1, fy), lvl).r;
     d2 = texelFetch(input_img, ivec2(fx, fy + 1), lvl).r;
     d3 = texelFetch(input_img, ivec2(fx + 1, fy + 1), lvl).r;
-
     // get the maximum value
     d0 = max(max(d0, d1), max(d2, d3));
 

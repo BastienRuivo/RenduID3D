@@ -60,8 +60,9 @@ MeshObject::MeshObject(const std::string & filename) {
     // glGenBuffers(1, &indirectBuffer);
     // glBindBuffer(GL_DRAW_INDIRECT_BUFFER, indirectBuffer);
     // glBufferData(GL_DRAW_INDIRECT_BUFFER, indirectParams.size() * sizeof(GLSL::IndirectParam), indirectParams.data(), GL_STATIC_READ);
-    InitBuffer(GL_SHADER_STORAGE_BUFFER, GL_DYNAMIC_DRAW, frustumDrawCountBuffer, sizeof(GLuint), nullptr);
-    InitBuffer(GL_SHADER_STORAGE_BUFFER, GL_DYNAMIC_DRAW, occlusionDrawCountBuffer, sizeof(GLuint), nullptr);
+    InitBuffer(GL_SHADER_STORAGE_BUFFER, GL_DYNAMIC_DRAW, frustumDrawCountBuffer, sizeof(GLint), nullptr);
+    InitBuffer(GL_SHADER_STORAGE_BUFFER, GL_DYNAMIC_DRAW, occlusionDrawCountBuffer, sizeof(GLint), nullptr);
+    //InitBuffer(GL_SHADER_STORAGE_BUFFER, GL_DYNAMIC_DRAW, drawCountBuffer, sizeof(GLuint), nullptr);
     InitBuffer(GL_DRAW_INDIRECT_BUFFER, GL_DYNAMIC_DRAW, indirectBuffer, indirectParams.size() * sizeof(GLSL::IndirectParam), indirectParams.data());
     InitBuffer(GL_SHADER_STORAGE_BUFFER, GL_DYNAMIC_DRAW, objectBuffer, objects.size() * sizeof(GLSL::Object), objects.data());
     InitBuffer(GL_SHADER_STORAGE_BUFFER, GL_STATIC_READ, materialBuffer, materialsGPU.size() * sizeof(GLSL::MaterialGPU), materialsGPU.data());
@@ -76,6 +77,7 @@ MeshObject::~MeshObject() {
     glDeleteBuffers(1, &materialBuffer);
     glDeleteBuffers(1, &frustumDrawCountBuffer);
     glDeleteBuffers(1, &occlusionDrawCountBuffer);
+    // glDeleteBuffers(1, &drawCountBuffer);
     glDeleteTextures(1, &textureArray);
 
     mesh.release();
@@ -128,19 +130,45 @@ int MeshObject::FrustumCulling(const Param & param, const Transform & mvp, const
     // Read draw count
     int draw;
     glBindBuffer(GL_SHADER_STORAGE_BUFFER, frustumDrawCountBuffer);
-    glGetBufferSubData(GL_SHADER_STORAGE_BUFFER, 0, sizeof(GLuint), &draw);
+    glGetBufferSubData(GL_SHADER_STORAGE_BUFFER, 0, sizeof(GLint), &draw);
     glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
     return draw;
 }
 
-int MeshObject::draw(const Param & param, GLuint program, const Orbiter & cam, const Transform & view, const Transform & projection, const Transform & vpInv, const Transform & mm) {
-    auto m = model;
+int MeshObject::OcclusionCulling(Param & param, const Transform & mvp, const Transform & vpInv) {
+    glUseProgram(param.occlusionShader);
+    BindObject(0);
+    BindIndirect(1);
+    BindOcclusionDrawCount(2);
+    program_uniform(param.occlusionShader, "mvp", Viewport(1, 1) * mvp);
+    program_use_texture(param.occlusionShader, "depthSampler", 3, param.occTexture);
+    program_uniform(param.occlusionShader, "width", param.occWidth);
+    program_uniform(param.occlusionShader, "height", param.occHeight);
+    program_use_texture(param.occlusionShader, "depthMipmap", 4, param.occMipmapTexture);
+    //get number of mipmaps into depthMipmap
+    program_uniform(param.occlusionShader, "nbLvls", param.lvl + 1);
+    int nb = 256;
+    int groups = (size() + nb) / nb;
+    glDispatchCompute(groups, 1, 1);
+    glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
+
+    int draw;
+    glBindBuffer(GL_SHADER_STORAGE_BUFFER, occlusionDrawCountBuffer);
+    glGetBufferSubData(GL_SHADER_STORAGE_BUFFER, 0, sizeof(GLint), &(draw));
+    glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
+    return draw;
+}
+
+int MeshObject::draw(Param & param, GLuint program, const Transform & view, const Transform & projection, const Transform & vpInv, const Transform & mm, bool performCulling) {
+    auto m = model * mm;
     Transform mv = view * m;
     Transform mvp = projection * mv;
-    
-    // Handle frustum culling
-    int draw = 0;//OcclusionCulling(param, cam, mvp, vpInv);
-    //int draw = FrustumCulling(param, mvp, vpInv);
+    int draw = 0;
+    if(performCulling) {
+        FrustumCulling(param, mvp, vpInv);
+        draw = OcclusionCulling(param, mvp, vpInv);
+        if(draw == 0) return 0;
+    }
 
     glBindVertexArray(mesh.m_vao);
     glUseProgram(program);
@@ -155,30 +183,7 @@ int MeshObject::draw(const Param & param, GLuint program, const Orbiter & cam, c
     glBindBuffer(GL_DRAW_INDIRECT_BUFFER, 0);
     glBindVertexArray(0);
 
-    //glDrawElements(GL_TRIANGLES, mesh.index_count(), GL_UNSIGNED_INT, 0);
-
     return draw;
 }
 
-int MeshObject::OcclusionCulling(const Param & param, const Orbiter  & cam, const Transform & mvp, const Transform & vpInv) {
-    glUseProgram(param.occlusionShader);
-    BindObject(0);
-    BindIndirect(1);
-    BindOcclusionDrawCount(2);
-    program_uniform(param.occlusionShader, "mvpvp", Viewport(1.0, 1.0) * mvp);
-    program_use_texture(param.occlusionShader, "depthSampler", 3, param.occTexture);
-    program_uniform(param.occlusionShader, "width", param.occWidth);
-    program_uniform(param.occlusionShader, "height", param.occHeight);
-    program_uniform(param.lightShader, "znear", cam.znear());
-    program_uniform(param.lightShader, "zfar", cam.zfar());
-    int nb = 256;
-    int groups = (size() + nb) / nb;
-    glDispatchCompute(groups, 1, 1);
-    glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
 
-    int draw;
-    glBindBuffer(GL_SHADER_STORAGE_BUFFER, occlusionDrawCountBuffer);
-    glGetBufferSubData(GL_SHADER_STORAGE_BUFFER, 0, sizeof(GLuint), &draw);
-    glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
-    return draw;
-}

@@ -14,16 +14,7 @@ void main( )
 
 #ifdef FRAGMENT_SHADER
 
-uniform float znear;
-uniform float zfar;
-
-out vec4 fragColor;
-
 void main( )
 {
-    // float depth = -gl_FragCoord.z;
-    // depth = (2.0 * znear) / (zfar + znear - depth * (zfar - znear));
-    
-    // fragColor = vec4(depth, 0, 0, 1);
 }
 #endif

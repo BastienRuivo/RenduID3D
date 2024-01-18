@@ -98,13 +98,16 @@ public:
     float m_width;
     float m_height;
     float m_fov;
-    
-protected:
+
+
+
     Point m_center;
     vec2 m_position;
     vec2 m_rotation;
     float m_size;
     float m_radius;
+    
+protected:
     
     
 };

@@ -83,7 +83,9 @@
         "variant": "cpp",
         "*.txt": "cpp",
         "*.ipp": "cpp",
-        "hash_set": "cpp"
+        "hash_set": "cpp",
+        "codecvt": "cpp",
+        "ranges": "cpp"
     },
     "C_Cpp.default.compilerPath": "/usr/bin/g++"
 }

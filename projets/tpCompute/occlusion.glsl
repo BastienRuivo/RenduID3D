@@ -27,14 +27,15 @@ layout(std430, binding=1) buffer DrawParameters {
 };
 
 layout(std430, binding=2) buffer DrawResults {
-    uint drawCount;
+    int drawCount;
+    //float drawCount;
 };
 
 const float limit = 1e9;
 
-uniform mat4 mvpvp;
+uniform mat4 mvp;
 
-vec3[8] boxify(vec3 minvec, vec3 maxvec, mat4 mvpMatrix) {
+vec3[8] boxify(vec3 minvec, vec3 maxvec) {
     vec3[8] result;
     result[0] = vec3(minvec.x, minvec.y, minvec.z);
     result[1] = vec3(minvec.x, minvec.y, maxvec.z);
@@ -48,8 +49,10 @@ vec3[8] boxify(vec3 minvec, vec3 maxvec, mat4 mvpMatrix) {
 }
 
 uniform sampler2D depthSampler;
-uniform uint width;
-uniform uint height;
+uniform sampler2D depthMipmap;
+uniform int width;
+uniform int height;
+uniform int nbLvls;
 
 layout(local_size_x = 256) in;
 void main( )
@@ -67,42 +70,82 @@ void main( )
     }
 
     Object obj = object[index];
-    vec3[8] box = boxify(obj.pmin.xyz, obj.pmax.xyz, mvpvp);
+    vec3[8] box = boxify(obj.pmin.xyz, obj.pmax.xyz);
 
-    vec3 minvec = vec3(limit, limit, limit);
-    vec3 maxvec = vec3(-limit, -limit, -limit);
+    vec4 p0 = mvp * vec4(box[0], 1.0);
+    p0 /= p0.w;
 
-    float Z = limit;
-    for (int i = 0; i < 8; i++) {
-        vec4 p = mvpvp * vec4(box[i], 1.0);
+    vec3 minvec = p0.xyz;
+    vec3 maxvec = p0.xyz;
+
+    for (int i = 1; i < 8; i++) {
+        vec4 p = mvp * vec4(box[i], 1.0);
         p /= p.w;
-        minvec = min(minvec, p.xyz);
-        maxvec = max(maxvec, p.xyz);
-        Z = min(Z, p.z);
+        minvec.x = min(minvec.x, p.x);
+        minvec.y = min(minvec.y, p.y);
+        minvec.z = min(minvec.z, p.z);
+
+        maxvec.x = max(maxvec.x, p.x);
+        maxvec.y = max(maxvec.y, p.y);
+        maxvec.z = max(maxvec.z, p.z);
     }
 
-    float depth = limit;
+    if(maxvec.z > 1.0) {
+        param[index].index_count = obj.index_count;
+        return;
+    }
 
-    float w = abs(maxvec.x - minvec.x);
-    float h = abs(maxvec.y - minvec.y);
+    float depth = 0.0;
+
+    float w = (maxvec.x - minvec.x);
+    float h = (maxvec.y - minvec.y);
 
     float texelw = 1.0 / width;
     float texelh = 1.0 / height;
 
-    // zmax doit etre inferieur a zmin de la voite
+    // normalized coordinate -> pixel coordinate
+    int x = max(int(minvec.x * float(width)), 0);
+    int y = max(int(minvec.y * float(height)), 0);
 
-    for(float i = minvec.x; i < maxvec.x; i+=texelw) {
-        for(float j = minvec.y; j < maxvec.y; j+=texelh) {
-            vec2 uv = vec2(i, j);
-            float d = texture(depthSampler, uv).r;
-            depth = min(depth, d);
+    int maxx = min(int(maxvec.x * float(width)), width);
+    int maxy = min(int(maxvec.y * float(height)), height);
+
+    // zmax doit etre inferieur a zmin de la voite
+    float nbpxscreen = float(width * height);
+    float nbpxbox = min(float((maxx - x) * (maxy - y)), nbpxscreen);
+    float pixelRatio = nbpxbox / nbpxscreen;
+    int lvl = int(floor(pixelRatio * float(nbLvls)));
+
+    int div = int(pow(2.0, lvl));
+    if(lvl == 0) {
+        for(int i = x; i < maxx; i++) {
+            for(int j = y; j < maxy; j++) {
+                float d = texelFetch(depthSampler, ivec2(i, j), 0).r;
+                depth = max(depth, d);
+            }
+        }
+    } else {
+        x = x / div;
+        y = y / div;
+
+        maxx = max(min(maxx / div, width), 4);
+        maxy = max(min(maxy / div, height), 4);
+
+        
+
+        for(float i = 0; i < maxx; i++) {
+            for(float j = 0; j < maxy; j++) {
+                vec2 uv = vec2(i * 2 * lvl / float(width), j * 2 * lvl / float(height));
+                float d = textureLod(depthMipmap, uv, lvl - 1).r;
+                depth = max(depth, d);
+            }
         }
     }
 
-    param[index].index_count = uint(depth > Z) * obj.index_count;
-    // Make object visible if it is in front of the near plane
-    if (param[index].index_count > 0) {
-        atomicAdd(drawCount, uint(depth  * 1000.0));
+    param[index].index_count = uint(minvec.z <= depth) * obj.index_count;
+    //param[index].index_count = obj.index_count;
+    if(param[index].index_count > 0) {
+        atomicAdd(drawCount, 1);
     }
 }
 
